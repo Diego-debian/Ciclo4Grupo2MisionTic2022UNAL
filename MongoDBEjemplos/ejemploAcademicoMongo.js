@@ -21,3 +21,19 @@
  db.departamento.find({"nombre_dpto":"Física"})
  //Quitar información de la consulta
  db.departamento.find({"nombre_dpto":"Física"}, {"id":0} )
+
+ /**
+  * Consultas organizadas
+  */
+ db.departamento.find({},{"_id":0,"id":0})
+ db.departamento.find({},{"_id":0,"id":0}).sort({"nombre_dpto":1})
+
+/**
+ * Limitar consultas
+ */
+ db.departamento.find({},{"_id":0,"id":0}).sort({"nombre_dpto":1}).limit(2)
+
+ /**
+  * Ciclos for => ForEach
+  */
+ 
