@@ -19,3 +19,6 @@
   * Consultas condicionadas
   */
  db.departamento.find({"nombre_dpto":"Física"})
+ //Quitar información de la consulta
+ db.departamento.find({"nombre_dpto":"Física"},
+                       {"_id":0, "id":0} )
