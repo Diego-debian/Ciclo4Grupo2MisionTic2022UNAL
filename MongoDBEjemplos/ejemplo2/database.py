@@ -12,7 +12,6 @@ def dbConnection():
         #Conexión local
         #client = MongoClient(MONGO_URI, port=27017)
         client = MongoClient(MONGO_URI, tlsCAFile=ca)
-        db = client["ciclo4_grupo2_db"] #se usa como un diccionario
-    except ConnectionError:
+        db = client["ciclo4_grupo2_db"] #se crea la base de datos
         print("Error de conexión con la db")
     return db
