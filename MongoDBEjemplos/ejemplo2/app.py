@@ -65,7 +65,7 @@ def editProduct(product_name):
         notFound()
 
 #Método delete
-@app.route('/delete/<string:product_name>')
+@app.route('/delete-product/<string:product_name>', methods=['DELETE'])
 def delete(product_name):
     products = db['products']
     products.delete_one({
