@@ -64,6 +64,14 @@ def editProduct(product_name):
     else:
         notFound()
 
+#Método delete
+@app.route('/delete/<string:product_name>')
+def delete(product_name):
+    products = db['products']
+    products.delete_one({
+        'name':product_name
+    })
+    return redirect(url_for('home'))
 
 @app.errorhandler(404)
 def notFound(error= None):
