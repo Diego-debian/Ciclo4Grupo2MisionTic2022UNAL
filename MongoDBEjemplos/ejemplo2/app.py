@@ -1,4 +1,5 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
+from flask import Response, redirect, url_for 
 import database as dbase 
 from products import Products
 from flask_cors import CORS
@@ -21,6 +22,36 @@ def getProduct():
     for i in productsReceived:
         response.append(str(i))
     return jsonify(response)
+
+@app.route('/post-products', methods=['POST'])
+def addProduct():
+    products = db['products']
+    name = request.form['name']
+    price = request.form['price']
+    quantity = request.form['quantity']
+    if name and price and quantity:
+        product = Products(name,price,quantity)
+        products.insert_one(product.toDBCollection())
+        response = jsonify({
+            'name': name,
+            'price': price,
+            'quantity': quantity
+        })
+        response.headers.add('Access-Control-Allow-Origin','*')
+        return redirect(url_for('home'))
+    else: 
+        return notFound()
+    
+@app.errorhandler(404)
+def notFound(error= None):
+    message = {
+        'message': 'No encontrado ' + request.url,
+        'status': '404 not Found'
+    }
+    response=jsonify(message)
+    response.status_code=404
+    response.headers.add('Access-Control-Allow-Origin','*')
+    return response
 
 
 
