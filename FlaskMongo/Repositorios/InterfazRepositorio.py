@@ -39,6 +39,7 @@ class InterfazRepositorio(Generic[T]):
                 x[k] = self.getValuesDBRefFromList(x[k])
             elif isinstance(x[k], dict):
                 x[k] = self.getValuesDBRef(x[k])
+        return x
 
     def findById(self, id):
         laColeccion = self.db[self.collection]
@@ -69,7 +70,8 @@ class InterfazRepositorio(Generic[T]):
                 x[attribute] = self.formatList(x[attribute])
             elif isinstance(x[attribute], dict):
                 x[attribute] = self.transformObjectIds(x[attribute])
-
+        return x
+        
     #Busqueda por todos los ids
     def findAll(self):
         laColeccion = self.db[self.collection]
