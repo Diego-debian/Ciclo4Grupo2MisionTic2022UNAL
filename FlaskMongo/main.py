@@ -33,6 +33,16 @@ def crearPartido():
     json = miControladorPartido.create(data)
     return jsonify(json)
 
+@app.route("/partidos/<string:id>", methods=['PUT'])
+def modificarPartido(id):
+    data = request.get_json()
+    json = miControladorPartido.update(id, data)
+    return jsonify(json)
+
+@app.route("/partidos/<string:id>", methods=['DELETE'])
+def eliminarPartido(id):
+    json = miControladorPartido.delete(id)
+    return jsonify(json)
 
 if __name__ =="__main__":
     app.run(debug=True, port=4000)
