@@ -120,14 +120,14 @@ class InterfazRepositorio(Generic[T]):
         laColeccion = self.db[self.collection]
         elId = ""
         item = self.transformRefs(item)
-        if hasattr(item, "_id") and item.id != "":
+        if hasattr(item, "_id") and item._id != "":
             elId = item._id
             _id = ObjectId(elId)
             laColeccion = self.db[self.collection]
             delattr(item, "_id")
             item = item.__dict__
             updateItem = {"$set": item}
-            x = laColeccion.update_one({"_id":id}, updateItem)
+            x = laColeccion.update_one({"_id":_id}, updateItem)
         else:
             _id = laColeccion.insert_one(item.__dict__)
             elID = _id.inserted_id.__str__()
