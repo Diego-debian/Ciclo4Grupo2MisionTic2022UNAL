@@ -46,3 +46,15 @@ class ResultadoControlador():
     #Eliminar un resultado
     def delete(self, id):
         return self.repositorioResultado.delete(id)
+
+    #Obtener todos los candidatos inscritos en una mesa
+    def getListarCandidatosEnMesa(self, id_mesa):
+        return self.repositorioResultado.getListadoCandidatosInscritosMesa(id_mesa)
+    
+    #Obtener las mesas en las que esta inscrito un candidato
+    def getListarMesasDeInscritoCandidato(self, id_candidato):
+        return self.repositorioResultado.getListadoMesasCandidatoInscrito(id_candidato)
+
+    #Obtener el candidato con mayor cédula
+    def getMayorCedula(self):
+        return self.repositorioResultado.getNumeroCedulaMayorCandidato()
