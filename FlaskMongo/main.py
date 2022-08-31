@@ -138,10 +138,35 @@ def crearResultado(id_mesa, id_candidato):
     json = miControladorResultado.create(data, id_mesa, id_candidato)
     return jsonify(json)
 
+#Modificar el resultado
+@app.route("/resultados/<string:id_resultado>/mesa/<string:id_mesa>/candidato/<string:id_candidato>", methods=['PUT'])
+def modificarResultado(id_resultado, id_mesa, id_candidato):
+    data = request.get_json()
+    json = miControladorResultado(id_resultado, data, id_mesa, id_candidato)
+    return jsonify(json)
 
+#Elimanr un resultado
+@app.route("/resultados/<string:id>", methods=['DELETE'])
+def eliminarResultado(id):
+    json = miControladorResultado.delete(id)
+    return jsonify(json)
 
+#inscritos en mesas 
+@app.route("/resultados/<string:id_mesa>", methods = ['GET'])
+def inscritosEnMesa(id_mesa):
+    json = miControladorResultado.getListarCandidatosEnMesa(id_mesa)
+    return jsonify(json)
 
+#Buscar candidato en las mesas
+@app.route("/resultados/mesas/<string:id_candidato>", methods = ['GET'])
+def inscritoEnMesas(id_candidato):
+    json = miControladorResultado.getListarMesasDeInscritoCandidato(id_candidato)
+    return jsonify(json)
 
-
+#Buscar mayor cedula
+@app.route("/resultados/maxdocument", methods=['GET'])
+def getMaxDocument():
+    json = miControladorResultado.getMayorCedula()
+    return jsonify(json)
 if __name__ =="__main__":
     app.run(debug=True, port=9000)
