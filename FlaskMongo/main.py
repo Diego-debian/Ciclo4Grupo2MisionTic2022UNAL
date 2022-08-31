@@ -6,11 +6,13 @@ from flask_cors import CORS
 from Controladores.PartidoControlador import PartidoControlador
 from Controladores.CandidatoControlador import CandidatoControlador
 from Controladores.MesaControlador import MesaControlador
+from Controladores.ResultadoControlador import ResultadoControlador
 app = Flask(__name__)
 cors = CORS(app)
 miControladorPartido = PartidoControlador()
 miControladorCandidato = CandidatoControlador()
 miControladorMesa = MesaControlador()
+miControladorResultado = ResultadoControlador()
 
 @app.route("/", methods=["GET"])
 def test():
@@ -111,6 +113,35 @@ def modificarMesa(id):
 def eliminarMesa(id):
     json = miControladorMesa.delete(id)
     return jsonify(json)
+
+
+#####################################################
+##            ENDPOINTS DE RESULTADOS              ##
+#####################################################
+
+#OBTENER TODOS LOS RESULTADOS  
+@app.route("/resultados", methods=['GET'])
+def getResultados():
+    json = miControladorResultado.index()
+    return jsonify(json)
+
+#OBTENER UN RESULTADO EN ESPECIFICO
+@app.route("/resultados<string:id>", methods=['GET'])
+def getResultado(self, id):
+    json = miControladorResultado.show(id)
+    return jsonify(json)
+
+#AÑADIR UN RESULTADO EN UNA MESA
+@app.route("/resultados/mesa/<string:id_mesa>/candidato/<string:id_candidato>", methods=['POST'])
+def crearResultado(id_mesa, id_candidato):
+    data = request.get_json()
+    json = miControladorResultado.create(data, id_mesa, id_candidato)
+    return jsonify(json)
+
+
+
+
+
 
 if __name__ =="__main__":
     app.run(debug=True, port=9000)
