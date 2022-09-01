@@ -126,8 +126,8 @@ def getResultados():
     return jsonify(json)
 
 #OBTENER UN RESULTADO EN ESPECIFICO
-@app.route("/resultados<string:id>", methods=['GET'])
-def getResultado(self, id):
+@app.route("/resultados/<string:id>", methods=['GET'])
+def getResultado(id):
     json = miControladorResultado.show(id)
     return jsonify(json)
 
@@ -142,7 +142,7 @@ def crearResultado(id_mesa, id_candidato):
 @app.route("/resultados/<string:id_resultado>/mesa/<string:id_mesa>/candidato/<string:id_candidato>", methods=['PUT'])
 def modificarResultado(id_resultado, id_mesa, id_candidato):
     data = request.get_json()
-    json = miControladorResultado(id_resultado, data, id_mesa, id_candidato)
+    json = miControladorResultado.update(id_resultado, data, id_mesa, id_candidato)
     return jsonify(json)
 
 #Elimanr un resultado
@@ -168,5 +168,6 @@ def inscritoEnMesas(id_candidato):
 def getMaxDocument():
     json = miControladorResultado.getMayorCedula()
     return jsonify(json)
+
 if __name__ =="__main__":
     app.run(debug=True, port=9000)
