@@ -8,7 +8,7 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>seguridad.backend.Ciclo4Grupo2</groupId>
+	<groupId>BackendSecurity.Ciclo4Grupo2</groupId>
 	<artifactId>MainSecurity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>MainSecurity</name>

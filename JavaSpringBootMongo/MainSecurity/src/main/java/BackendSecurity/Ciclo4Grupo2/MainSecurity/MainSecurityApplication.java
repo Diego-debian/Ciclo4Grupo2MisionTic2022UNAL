@@ -1,4 +1,4 @@
-package seguridad.backend.Ciclo4Grupo2.MainSecurity;
+package BackendSecurity.Ciclo4Grupo2.MainSecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
