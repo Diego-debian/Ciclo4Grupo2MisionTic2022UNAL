@@ -1,10 +1,10 @@
-package BackendSecurity.Ciclo4Grupo2.MainSecurity;
+package tutorial.misionTIC.ModuloSeguridad;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MainSecurityApplicationTests {
+class ModuloSeguridadApplicationTests {
 
 	@Test
 	void contextLoads() {

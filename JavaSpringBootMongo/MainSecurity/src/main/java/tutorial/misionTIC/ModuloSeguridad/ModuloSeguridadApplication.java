@@ -1,13 +1,13 @@
-package BackendSecurity.Ciclo4Grupo2.MainSecurity;
+package tutorial.misionTIC.ModuloSeguridad;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MainSecurityApplication {
+public class ModuloSeguridadApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MainSecurityApplication.class, args);
+		SpringApplication.run(ModuloSeguridadApplication.class, args);
 	}
 
 }
