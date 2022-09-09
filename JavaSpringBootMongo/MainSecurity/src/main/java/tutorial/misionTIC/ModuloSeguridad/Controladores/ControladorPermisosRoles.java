@@ -36,7 +36,7 @@ public class ControladorPermisosRoles {
      * @return
      */
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/rol/{id_rol}/permiso/{id_permiso}")
+    @PostMapping("rol/{id_rol}/permiso/{id_permiso}")
     public PermisosRol create(@PathVariable String id_rol, @PathVariable String id_permiso){
         PermisosRol  nuevo = new PermisosRol();
         Rol elRol = miRepositorioRol.findById(id_rol).orElse(null);
@@ -49,5 +49,48 @@ public class ControladorPermisosRoles {
             return null;
         }
     }
-            
+
+    @GetMapping("{id}")
+    public PermisosRol show(@PathVariable String id){
+        PermisosRol permisosRolActual = miRepositorioPermisosRoles
+                .findById(id)
+                .orElse(null);
+        return permisosRolActual;
+    }
+
+    /**
+     * Modificaciones ROL y PERMISO
+     * @param id
+     * @param id_rol
+     * @param id_permiso
+     * @return
+     */
+
+    @PutMapping("{id}/rol/{id_rol}/permiso/{id_permiso}")
+    public PermisosRol update(@PathVariable String id,
+                              @PathVariable String id_rol,
+                              @PathVariable String id_permiso){
+        PermisosRol permisosRolesActuales = miRepositorioPermisosRoles
+                .findById(id)
+                .orElse(null);
+        Rol elRol = miRepositorioRol.findById(id_rol).get();
+        Permiso elPermiso = miRepositorioPermiso.findById(id_permiso).get();
+        if(permisosRolesActuales!=null && elPermiso != null && elRol != null){
+            permisosRolesActuales.setPermiso(elPermiso);
+            permisosRolesActuales.setRol(elRol);
+            return miRepositorioPermisosRoles.save(permisosRolesActuales);
+        }else {
+            return null;
+        }
+    }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable String id){
+        PermisosRol permisosRolActual = miRepositorioPermisosRoles
+                .findById(id)
+                .orElse(null);
+        if(permisosRolActual!=null) {
+            miRepositorioPermisosRoles.delete(permisosRolActual);
+        }
+    }
 }
