@@ -35,9 +35,9 @@ class ResultadoControlador():
     def update(self, id, infoResultado, id_mesa, id_candidato):
         elResultado = Resultado(self.repositorioResultado.findById(id))
         # CABECERAS QUE QUEDAN PARA LA MODIFICACIÓN
-        elResultado.id = infoResultado["id"]
-        elResultado.numero_mesa = infoResultado["numero_mesa"]
-        elResultado.id_partido = infoResultado["id_partido"]
+        #elResultado.id = infoResultado["id"]
+        #elResultado.numero_mesa = infoResultado["numero_mesa"]
+        #elResultado.id_partido = infoResultado["id_partido"]
         # ESTAMOS CON LA INFORMACIÓN DE LA MESA
         laMesa = Mesa(self.repositorioMesa.findById(id_mesa))
         elCandidato = Candidato(self.repositorioCandidato.findById(id_candidato))

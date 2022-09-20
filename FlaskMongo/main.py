@@ -140,7 +140,7 @@ def crearResultado(id_mesa, id_candidato):
 #Modificar el resultado
 @app.route("/resultados/<string:id_resultado>/mesa/<string:id_mesa>/candidato/<string:id_candidato>", methods=['PUT'])
 def modificarResultado(id_resultado, id_mesa, id_candidato):
-    data = request.get_json()
+    data = {}
     json = miControladorResultado.update(id_resultado, data, id_mesa, id_candidato)
     return jsonify(json)
 
