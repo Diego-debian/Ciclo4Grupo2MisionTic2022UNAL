@@ -11,14 +11,14 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [
     {
-      path:'seguridad',
-      loadChildren: ()=>  import('./seguridad/seguridad.module')
-      .then(m => m.SeguridadModule)
+      path: 'seguridad',
+      loadChildren: () => import('./seguridad/seguridad.module')
+      .then(m => m.SeguridadModule),
     },
     {
-      path:'candidato',
-      loadChildren: ()=>  import('./candidato/candidato.module')
-      .then(m => m.CandidatoModule)
+      path: 'candidato',
+      loadChildren: () => import('./candidato/candidato.module')
+      .then(m => m.CandidatoModule),
     },
     {
       path: 'dashboard',
