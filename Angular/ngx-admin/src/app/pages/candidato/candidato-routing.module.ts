@@ -10,6 +10,10 @@ const routes: Routes = [{
 {
   path: 'crear',
   component: CrearComponent
+},
+{
+  path: 'actualizar/:id_candidato',
+  component: CrearComponent
 }
 ];
 
